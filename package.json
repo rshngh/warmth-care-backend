@@ -1,23 +1,22 @@
 {
-  "name": "warmth-care",
+  "name": "warmth-care-backend",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "cd ../frontend && npm install && npm run build",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rshngh/warmth-care.git"
+    "url": "git+https://github.com/rshngh/warmth-care-backend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rshngh/warmth-care/issues"
+    "url": "https://github.com/rshngh/warmth-care-backend/issues"
   },
-  "homepage": "https://github.com/rshngh/warmth-care#readme",
+  "homepage": "https://github.com/rshngh/warmth-care-backend#readme",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",

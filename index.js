@@ -1,12 +1,11 @@
 import express, { urlencoded } from "express";
 import connectDB from "./db.js";
 import "dotenv/config";
-import { chats } from "./data/data.js";
 import userRouter from "./routes/user.routes.js";
 import chatRouter from "./routes/chat.routes.js";
 import messageRouter from "./routes/message.routes.js";
 import cors from "cors";
-import { verifyToken } from "./middleware/auth.middleware.js";
+
 import cookieParser from "cookie-parser";
 import path from "path";
 
@@ -20,14 +19,6 @@ app.use(
     credentials: true,
   })
 );
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
-  });
-}
 
 try {
   app.listen(PORT, () => {
