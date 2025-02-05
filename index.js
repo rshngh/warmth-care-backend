@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 try {
   app.listen(PORT, () => {
     console.log(`Successfully connected to the server at port ${PORT}.`);
-    connectDB(process.env.MONGOURI);
+    connectDB(process.env.MONGODB_URI);
   });
 } catch (error) {
   console.log("Error connecting to the server!");
