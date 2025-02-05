@@ -15,7 +15,7 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "https://warmth-care.vercel.app/",
+    origin: "https://warmth-care.vercel.app",
     credentials: true,
   })
 );
