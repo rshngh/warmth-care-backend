@@ -25,7 +25,12 @@ try {
 app.use(express.json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://warmth-care.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
