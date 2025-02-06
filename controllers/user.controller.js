@@ -6,8 +6,8 @@ import asyncHandler from "express-async-handler";
 const cookieOptions = {
   maxAge: 30 * 24 * 60 * 60 * 1000,
   httpOnly: true,
-  sameSite: "strict",
-  secure: true,
+  sameSite: "none",
+  secure: false,
 };
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -38,20 +38,12 @@ export const registerUser = asyncHandler(async (req, res) => {
     if (newUser) {
       const token = generateToken(newUser._id, res);
 
-      return res
-        .cookie("jwt", token, {
-          maxAge: 7 * 24 * 60 * 60 * 1000,
-          httpOnly: true,
-          sameSite: "strict",
-          secure: true,
-        })
-        .status(201)
-        .json({
-          message: "User created successfully.",
-          name: newUser.name,
-          email: newUser.email,
-          id: newUser._id,
-        });
+      return res.cookie("jwt", token, cookieOptions).status(201).json({
+        message: "User created successfully.",
+        name: newUser.name,
+        email: newUser.email,
+        id: newUser._id,
+      });
     } else {
       return res.status(400).json({ message: "Invalid user data." });
     }
@@ -83,22 +75,14 @@ export const logIn = asyncHandler(async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res
-      .cookie("jwt", token, {
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "strict",
-        secure: true,
-      })
-      .status(201)
-      .json({
-        message: "Login successful",
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        token: token,
-      });
+    res.cookie("jwt", token, cookieOptions).status(201).json({
+      message: "Login successful",
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar,
+      token: token,
+    });
   } catch (error) {
     console.log("Error in LogIn controller.", error);
     return res.status(500).json({ message: "Internal Server Error." });
@@ -109,12 +93,7 @@ export const logOut = asyncHandler(async (req, res) => {
   console.log("log out resource requested.");
 
   return res
-    .clearCookie("jwt", {
-      maxAge: 0,
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    })
+    .clearCookie("jwt", cookieOptions)
     .status(200)
     .json({ message: "Logged out successfully." });
 });
