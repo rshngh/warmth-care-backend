@@ -90,15 +90,12 @@ export const logIn = asyncHandler(async (req, res) => {
 });
 
 export const logOut = asyncHandler(async (req, res) => {
-  try {
-    return res
-      .clearCookie("jwt")
-      .status(200)
-      .json({ message: "Logged out successfully." });
-  } catch (error) {
-    console.log("Error in LogOut controller.", error);
-    return res.status(500).json({ message: "Internal Server Error." });
-  }
+  console.log("log out resource requested.");
+
+  return res
+    .clearCookie("jwt")
+    .status(200)
+    .json({ message: "Logged out successfully." });
 });
 
 export const checkAuth = (req, res) => {

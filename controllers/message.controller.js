@@ -35,10 +35,6 @@ export const sendMessages = asyncHandler(async (req, res) => {
   const paramsId = req.params.id;
   const { text } = req.body;
 
-  console.log("loggedInUserId", loggedInUserId);
-  console.log("paramsId", paramsId);
-  console.log("botId", process.env.MISS_WARMTH_ID);
-
   try {
     const newMessage = new Message({
       senderId: paramsId === loggedInUserId ? botId : loggedInUserId,
@@ -58,10 +54,8 @@ export const sendMessages = asyncHandler(async (req, res) => {
 export const deleteMessages = asyncHandler(async (req, res) => {
   const userId = req.user._id.toString();
   const testUserId = process.env.TEST_USER_ID;
-  console.log("id out:", userId, testUserId);
 
   if (userId === testUserId) {
-    console.log("id in:", userId, testUserId);
     await Message.deleteMany({
       $or: [
         { senderId: testUserId },
