@@ -93,7 +93,7 @@ export const logOut = asyncHandler(async (req, res) => {
   console.log("log out resource requested.");
 
   return res
-    .clearCookie("jwt")
+    .clearCookie("jwt", cookieOptions)
     .status(200)
     .json({ message: "Logged out successfully." });
 });
