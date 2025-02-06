@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();
 
 var corsOptions = {
-  origin: "https://warmth-care.vercel.app",
+  origin: "https://www.warmthcare.life",
   credentials: true,
 };
 
