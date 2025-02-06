@@ -7,7 +7,7 @@
       "dest": "/",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://warmth-care.vercel.app",
+        "Access-Control-Allow-Origin": "https://warmthcare.life",
         "Access-Control-Allow-Credentials": "true"
       }
     }
