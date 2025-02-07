@@ -42,7 +42,7 @@ export const registerUser = asyncHandler(async (req, res) => {
         message: "User created successfully.",
         name: newUser.name,
         email: newUser.email,
-        id: newUser._id,
+        _id: newUser._id,
       });
     } else {
       return res.status(400).json({ message: "Invalid user data." });
